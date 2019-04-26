@@ -10,9 +10,19 @@
         display: block;
       }
     </style>
-    <!-- <h2>Hello [[prop1]]!</h2> -->
+
     <form-task></form-task>
-    <task-repository></task-repository>
+    <task-repository offset=[[offset]] limit=[[limit]] on-page-event="onNewPage"></task-repository>
+    <task-list></task-list>
+    <div>
+      <input type="text" value=[[offset]]>
+    </div>
+    <div>
+      <button>First</button>
+      <button>Prev</button>
+      <button>Next</button>
+      <button>Last</button>
+    </div>
   </template>
 
   <script>
@@ -27,8 +37,36 @@
           prop1: {
             type: String,
             value: 'todo-app-app'
+          },
+          offset: {
+            type: String,
+            value: "2"
+          },
+          limit: {
+            type: String,
+            value: '13'
+          },
+          taskList: {
+            type: Array,
+            value: taskList
           }
         };
+        
+      }
+
+      onNewPage() {
+          const newPageEvent = new CustomEvent(
+          'new-page',
+          {
+            bubbles: true,
+            composed: true,
+            detail: {
+              taskList: this.taskList
+            }
+          }
+        )
+        console.log('New Page: ', taskList);
+        setTimeout(() => { this.dispatchEvent(newPageEvent); }, 300);
       }
     }
 
