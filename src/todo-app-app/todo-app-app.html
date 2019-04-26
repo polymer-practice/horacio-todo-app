@@ -1,4 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/form-task/form-task.html">
+<link rel="import" href="../../bower_components/task-list/task-list.html">
+<link rel="import" href="../../bower_components/task-repository/task-repository.html">
 
 <dom-module id="todo-app-app">
   <template>
@@ -7,7 +10,9 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <!-- <h2>Hello [[prop1]]!</h2> -->
+    <form-task></form-task>
+    <task-repository></task-repository>
   </template>
 
   <script>
